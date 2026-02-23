@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vue2TouchEvents from 'vue2-touch-events';
-import Ruler from './Ruler';
+import Ruler from './Ruler.vue';
 
 global.browser = require('webextension-polyfill');
 
@@ -12,11 +12,7 @@ Vue.use(Vue2TouchEvents, {
   disableClick: true,
 });
 
-new Vue({ // eslint-disable-line no-new
+new Vue({
   el: '#vue-app',
-  render(h) {
-    return (
-      h(Ruler)
-    );
-  },
+  render: (h) => h(Ruler),
 });

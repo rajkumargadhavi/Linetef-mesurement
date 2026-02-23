@@ -1,8 +1,6 @@
-import messages from './data/messages';
+const messages = ["showGuides", "hideGuides"]; 
 
-global.browser = require('webextension-polyfill');
-
-chrome.runtime.onMessage.addListener(({ message }) => {
+chrome.runtime.onMessage.addListener(({ message }, sender, sendResponse) => {
   if (messages.includes(message)) {
     chrome.tabs.query({}, (tabs) => {
       tabs.forEach(({ id }) => {
@@ -10,4 +8,5 @@ chrome.runtime.onMessage.addListener(({ message }) => {
       });
     });
   }
+  return true; // Required for async response
 });
